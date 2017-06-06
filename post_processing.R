@@ -56,8 +56,12 @@ identify_clusters <-function(tissue,ncluster,type) {
   tissue=SetAllIdent(tissue,id = "orig.ident")
   for (i in (2:ncluster)){
     marker=FindMarkers(tissue,i)
-    #only keep marker genes expressed in 5 % of the cells 
-    marker[rownames(as.matrix(rowSums(tissue@raw.data[rownames(marker),])) > .05*length(rownames(marker))),]
+    if (length(colnames(tissue@raw.data[,rownames(subset(tissue@data.info, tissue@data.info$DBclust.ident==i))]))>100){
+      marker<-marker[rownames(as.matrix(rowSums(tissue@raw.data[rownames(marker),])) > .05*length(rownames(marker))),]
+    }
+    else{
+      marker<-marker[rownames(as.matrix(rowSums(tissue@raw.data[rownames(marker),])) > 5),]
+    }
     write.csv(marker,paste0(type,".markergenes",i,'.csv'))
     make_umi_table(tissue,i,paste0(type,"cluster",i,"averageumi.txt"))}}
     
