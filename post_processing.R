@@ -65,6 +65,11 @@ identify_clusters <-function(tissue,ncluster,type) {
     write.csv(marker,paste0(type,".markergenes",i,'.csv'))
     make_umi_table(tissue,i,paste0(type,"cluster",i,"averageumi.txt"))}}
     
+# To Plot Genes of your choice in the clusters and clean up your TSNE plot (input is your seurat object and a list of cluster ids that you want to remove from your plot
+clean_tsne<-function (tissue, bad_clusters,genes){
+ TSNEPlot(tissue, do.return = T, no.legend = FALSE,cells.use =rownames(tissue@data.info[!(tissue@data.info$DBclust.ident %in% bad_clusters),]))
+ feature.plot(tissue,genes,pt.size = 1,col = c('red','grey'))
+ }
 
 ###example usage###########
 ## LI <-process_umi('~/Documents/Ren_lab/sc/LI.counts.tsv','LI') # name of file, what I want to call the seurat object
