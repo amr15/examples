@@ -1,3 +1,5 @@
+
+#### This is for Version 1.4 of Seurat (updated code for latest version coming up)
 install.packages("devtools")
 library(devtools)
 install_url("https://github.com/satijalab/seurat/releases/download/v1.4.0/Seurat_1.4.0.8.tgz", binary = TRUE)
