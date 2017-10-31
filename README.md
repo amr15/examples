@@ -26,14 +26,20 @@ Usage: process_umi_step2(seurat_object, k for knn clustering, umi cutoff (to con
 The umi cutoff is currently chosen by visualizing the nGene plotted against the nUMI for all cells.  Cells that have an abnormally high number of UMI 
 for a given number of genes are considered to be doublets. To estimate k we can use Sqrt(n) where n is the number of cells as a rough estimate.  
 
-### c) Identify cell type specific marker genes and write two tables (list of marker genes for each cluster & the average umi for each cluster)
+### c) Identify cell type specific marker genes 
 
 Usage: identify_clusters(seurat_object, # of clusters, 'name_of_sample')  
 
-Note:The name of sample will be used to name the output files, and the # of cells in each cluster will be outputted to the screen
+The name of sample will be used to name the output files, and the number of cells in each cluster will be outputted to the screen.
+For each cluster a table with a list of signficantly up or downregulated marker genes as well as a table with the average UMI for each gene will be outputted. 
+
 
 ### d) Create a heatmap of the cell type specific genes  (python script)
-
+The input is a matrix of the average umi for each gene in each cell type (cluster).  
+The outputs are:
+  1) A normalized heat map (z-score)
+  2) raw unnormalized heatmap
+  3) A csv table showing the order of genes in the normalized and unnormalized heatmap 
 
 
 
