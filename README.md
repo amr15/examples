@@ -1,5 +1,5 @@
 
-#Step1: Preprocessing (From Fastq to UMI exprssion matrix (columns are cells and rows are genes))
+##Step1: Preprocessing (From Fastq to UMI exprssion matrix (columns are cells and rows are genes))
 
 Please See drop-seq tools for explanation of various functions
 
