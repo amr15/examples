@@ -56,7 +56,7 @@ identify_clusters <-function(tissue,ncluster,type) {
     
 # To Plot Genes of your choice in the clusters and clean up your TSNE plot (input is your seurat object and a list of cluster ids that you want to remove from your plot
 clean_tsne<-function(tissue, badcluster, genelist){
-  TSNEPlot(tissue, do.return = T, no.legend = FALSE,cells.use =rownames(tissue@data.info[!(tissue@data.info$DBclust.ident %in% badcluster),]))
+  TSNEPlot(tissue, do.return = T, no.legend = FALSE,cells.use =rownames(tissue@meta.data[!(tissue@eta.data$res.0.8 %in% badcluster),]))
   FeaturePlot(tissue,genelist,pt.size = 1,col = c('grey','red'))}
 
 
