@@ -1,6 +1,6 @@
 SC RNA-seq analysis piepline
 ============================================================
-Time-stamp: "2017-11-01 10:30:16"
+Time-stamp: "2017-11-01 10:32:19"
 
 
 # Overall steps
@@ -18,8 +18,8 @@ Time-stamp: "2017-11-01 10:30:16"
   *  UMIs (transcripts) whose barcodes differ by one basepair are merged together when counting umis/gene 
 * *Please See drop-seq tools for explanation of various functions in the actual script*
 
-## Step2: Downstream Analysis using Seurat Package in R & Python (Seaborn) for heatmap visualization
-All functions can be found in `post_processing.R`
+## Step2: Downstream Analysis  
+All functions can be found in `post_processing.R`. Require: Seurat Package in R & Python (Seaborn) for heatmap visualization
 
 ### Creating a "seurat object" for downstream analysis and visualizing basic qc metrics 
 
@@ -41,7 +41,7 @@ The name of sample will be used to name the output files, and the number of cell
 For each cluster a table with a list of signficantly up or downregulated marker genes as well as a table with the average UMI for each gene will be outputted. 
 
 
-### d) Create a heatmap of the cell type specific genes  (python script)
+### Create a heatmap of the cell type specific genes  (python script)
 * **Input**: a matrix of the average umi for each gene in each cell type (cluster).
 *  **outputs**:
    1. A normalized heat map (z-score)
