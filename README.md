@@ -1,6 +1,6 @@
 SC RNA-seq analysis piepline
 ============================================================
-Time-stamp: "2017-11-01 10:32:19"
+Time-stamp: "2017-11-01 10:39:49"
 
 
 # Overall steps
@@ -14,12 +14,14 @@ Time-stamp: "2017-11-01 10:32:19"
 * **Code**: `Processing_part1_including_intornic_reads.sh`
 * **Input**: two fastq files (one for each R1 and one for R2).
 * **The output**: 
-  *  Genes by cells  matrix of genes (rows) by cells(columns).
+  *  Genes by cells matrix with UMIs 
   *  UMIs (transcripts) whose barcodes differ by one basepair are merged together when counting umis/gene 
 * *Please See drop-seq tools for explanation of various functions in the actual script*
 
-## Step2: Downstream Analysis  
-All functions can be found in `post_processing.R`. Require: Seurat Package in R & Python (Seaborn) for heatmap visualization
+## Step2: Downstream Analysis
+All functions can be found in `post_processing.R`. Require: 
+  * [Seurat Package](http://satijalab.org/seurat/) in R 
+  * [Seaborn](https://seaborn.pydata.org/) for heatmap visualization in python
 
 ### Creating a "seurat object" for downstream analysis and visualizing basic qc metrics 
 
