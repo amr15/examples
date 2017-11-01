@@ -1,16 +1,18 @@
-# SC RNA-seq analysis piepline 
+SC RNA-seq analysis piepline
+------------------------------------------------------------
 
+# Overall steps
 
+1. Preprocessing (From Fastq to UMI exprssion matrix)
+2. 
 
+# Detailed steps
 ## Step1: Preprocessing (From Fastq to UMI exprssion matrix)
-1) Run Processing_part1_including_intornic_reads.sh
-
-The input are two fastq files (one for each R1 and one for R2).  The output we care about is a tsv file that is a matrix of genes (rows) by cells(columns).  UMIs (transcripts) whose barcodes differ by one basepair are merged together when counting umis/gene 
-
-Please See drop-seq tools for explanation of various functions in the actual script
-
+	* Code: `Processing_part1_including_intornic_reads.sh`
+	* The input: two fastq files (one for each R1 and one for R2).
+	* The output:  Genes by cells  matrix of genes (rows) by cells(columns).  UMIs (transcripts) whose barcodes differ by one basepair are merged together when counting umis/gene 
+	* Please See drop-seq tools for explanation of various functions in the actual script
 ## Step2: Downstream Analysis using Seurat Package in R & Python (Seaborn) for heatmap visualization
-
 All functions can be found in post_processing.R 
 
 ### a) Creating a "seurat object" for downstream analysis and visualizing basic qc metrics 
