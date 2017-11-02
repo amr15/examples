@@ -1,7 +1,6 @@
 SC RNA-seq analysis piepline
 ============================================================
-Time-stamp: "2017-11-01 10:58:22"
-
+Time-stamp: "2017-11-02 14:14:48"
 
 # Overall steps
 
@@ -22,13 +21,10 @@ Time-stamp: "2017-11-01 10:58:22"
 All functions can be found in `post_processing.R`. Require: 
   * [Seurat Package](http://satijalab.org/seurat/) in R 
   * [Seaborn](https://seaborn.pydata.org/) for heatmap visualization in python
-
-### Creating a "seurat object" for downstream analysis and visualizing basic qc metrics 
-
+### prepare "seurat object" and QC
 * Usage: `seurat_object<- process_umi('nameoffile.txt', 'name_you_want_to_use')`
 * Basic QC metrics include a plot of the distribution of UMIs in all cells and number of genes in all cells
-
-### Running clustering and visualization (Using TSNE and KNN clustering) 
+### Clustering and visualization (Using TSNE and KNN clustering) 
 
 * Usage: `process_umi_step2(seurat_object, k for knn clustering, umi cutoff (to control for dobulets))`
   
