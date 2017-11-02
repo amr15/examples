@@ -1,6 +1,6 @@
 SC RNA-seq analysis piepline
 ============================================================
-Time-stamp: "2017-11-01 10:39:49"
+Time-stamp: "2017-11-01 10:58:22"
 
 
 # Overall steps
@@ -31,9 +31,14 @@ All functions can be found in `post_processing.R`. Require:
 ### Running clustering and visualization (Using TSNE and KNN clustering) 
 
 * Usage: `process_umi_step2(seurat_object, k for knn clustering, umi cutoff (to control for dobulets))`
+  
+* Cell selection thresholds: 
+  1. `min_reads`: minimal reads (*10000* Habib et al. 2017) 
+  2. `min_genes`: minimal number of genes per nucleus/cell (*200* Habib et al. 2017) 
+  3. `max_reads`: Cells that have an abnormally high number of UMI for a given number of genes are considered to be doublets.
+  4. The umi cutoff is currently chosen by visualizing the nGene plotted against the nUMI for all cells.
 
-The umi cutoff is currently chosen by visualizing the nGene plotted against the nUMI for all cells.  Cells that have an abnormally high number of UMI 
-for a given number of genes are considered to be doublets. To estimate k we can use Sqrt(n) where n is the number of cells as a rough estimate.
+* To estimate k we can use Sqrt(n) where n is the number of cells as a rough estimate. 
 
 ### Identify cell type specific marker genes 
 
