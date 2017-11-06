@@ -3,7 +3,7 @@
 require(Seurat)
 require(tidyverse)
 require(data.table)
-
+require(clusterCrit)
 
 #1st step in processing the umi file, check out the plots generated here to see how your data look
 #function takes in your tsv file, and what you'd like to name your project in quotes ie: "project"
@@ -59,6 +59,13 @@ identify_clusters <-function(tissue,ncluster,type) {
 clean_tsne<-function(tissue, badcluster, genelist){
   TSNEPlot(tissue, do.return = T, no.legend = FALSE,cells.use =rownames(tissue@meta.data[!(tissue@eta.data$res.0.8 %in% badcluster),]))
   FeaturePlot(tissue,genelist,pt.size = 1,col = c('grey','red'))}
+
+#To calculate clustering metrics to determine the optimal number of clusters
+cluster_index<-function(tissue){
+  data<-tissue@dr$tsne@cell.embeddings
+  partitions<-as.integer(tissue@meta.data[rownames(tissue@dr$tsne@cell.embeddings),'res.0.8'])
+  intCriteria(data,partitions,c("dav","Dunn")) # several options to choose from 
+  }
 
 
 ###example usage###########
