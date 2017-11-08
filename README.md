@@ -34,7 +34,7 @@ All functions can be found in `post_processing.R`. Require:
   3. `max_reads`: Cells that have an abnormally high number of UMI for a given number of genes are considered to be doublets.
   4. The umi cutoff is currently chosen by visualizing the nGene plotted against the nUMI for all cells.
 
-* To estimate k we can run *Usage: `optimize_k(seurat_object)`  to get out a table.  Ideal cluster choice maximizes Dunn & Shilouette Indicies and minimizes the Davies Bouldin index.  
+* To estimate k we can run `optimize_k(seurat_object)`  to get out a table.  Ideal cluster choice maximizes Dunn & Shilouette Indicies and minimizes the Davies Bouldin index.  
 
 ### Identify cell type specific marker genes 
 
