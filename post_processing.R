@@ -60,11 +60,20 @@ clean_tsne<-function(tissue, badcluster, genelist){
   TSNEPlot(tissue, do.return = T, no.legend = FALSE,cells.use =rownames(tissue@meta.data[!(tissue@eta.data$res.0.8 %in% badcluster),]))
   FeaturePlot(tissue,genelist,pt.size = 1,col = c('grey','red'))}
 
-#To calculate clustering metrics to determine the optimal number of clusters
-cluster_index<-function(tissue){
+#To calculate clustering metrics to determine the optimal number of clusters, returns a table you can use to optimize choice of K
+optimize_k <-function(tissue){
+  i = 3
+  tissue=FindClusters(tissue,k.param=i, dims.use = 1:10)
   data<-tissue@dr$tsne@cell.embeddings
   partitions<-as.integer(tissue@meta.data[rownames(tissue@dr$tsne@cell.embeddings),'res.0.8'])
-  intCriteria(data,partitions,c("dav","Dunn")) # several options to choose from 
+  indicies<-intCriteria(data,partitions,c("dav","Dunn","Silhouette"))
+  for (i in (4:30)){ 
+    tissue=FindClusters(tissue,k.param=i, dims.use = 1:10)
+    data<-tissue@dr$tsne@cell.embeddings
+    partitions<-as.integer(tissue@meta.data[rownames(tissue@dr$tsne@cell.embeddings),'res.0.8'])
+    index_new<-intCriteria(data,partitions,c("dav","Dunn","Silhouette"))
+    indicies<-rbind(data.frame(index_new), data.frame(indicies))}
+  return(indicies)
   }
 
 
