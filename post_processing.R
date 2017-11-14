@@ -62,12 +62,12 @@ clean_tsne<-function(tissue, badcluster, genelist){
 
 #To calculate clustering metrics to determine the optimal number of clusters, returns a table you can use to optimize choice of K
 optimize_k <-function(tissue){
-  i = 3
+  i = 5
   tissue=FindClusters(tissue,k.param=i, dims.use = 1:10)
   data<-tissue@dr$tsne@cell.embeddings
   partitions<-as.integer(tissue@meta.data[rownames(tissue@dr$tsne@cell.embeddings),'res.0.8'])
   indicies<-intCriteria(data,partitions,c("dav","Dunn","Silhouette"))
-  for (i in (4:30)){ 
+  for (i in c(10,15,20,25,30,35,40,45,50,55,60,65,70)){ 
     tissue=FindClusters(tissue,k.param=i, dims.use = 1:10)
     data<-tissue@dr$tsne@cell.embeddings
     partitions<-as.integer(tissue@meta.data[rownames(tissue@dr$tsne@cell.embeddings),'res.0.8'])
@@ -75,6 +75,7 @@ optimize_k <-function(tissue){
     indicies<-rbind(data.frame(index_new), data.frame(indicies))}
   return(indicies)
   }
+
 
 
 ###example usage###########
