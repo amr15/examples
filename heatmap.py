@@ -38,7 +38,7 @@ plt.savefig(argv[2]+'.png')
 
 ## We take the matrix from above and plot the corresponding raw umi counts 
 fig = plt.figure() 
-r=sns.clustermap(Tissue.ix[g.data2d.index,], row_cluster=False, col_cluster=False, linewidth=0, cmap = cmap)
+r=sns.clustermap(Tissue.ix[g.data2d.index], row_cluster=False, col_cluster=False, linewidth=0, cmap = cmap)
 pd.DataFrame(r.data2d).to_csv(argv[2]+'raw.txt', sep = '\t') 
 plt.suptitle(argv[3]+' Raw')
 plt.savefig(argv[2]+'raw.png')
