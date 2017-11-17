@@ -34,7 +34,6 @@ shift $(($OPTIND - 1))
 #You can also hardcode these options if you want
 #sampleName='samplename'  #change sample name  (you can call it whatever you want)                                                                                                    
 #species='h'   # change species name  (either m or h)                                                                                                                           
-#exonOnly='F' #we want to includ intronic reads as well to increase the number of genes covered                                                                                 
 #cells=5000   #change based on # of cells used in the experiment                                                                        
 ################################################################################################ 
 
@@ -114,7 +113,7 @@ orts/$sampleName'.synthesis_stats_summary.txt' NUM_BARCODES=$cells PRIMER_SEQUEN
 $dropseq_dir/BAMTagHistogram I=$sampleName'.aligned_both.gene.bam' O=`pwd`/DGE/$sampleName'.intron_fixreadsByBarcode.txt.gz' TAG=XC
 
 #calaulate the expression matrix 
-$dropseq_dir/DigitalExpression I=$sampleName'.aligned_both.gene.bam' O=`pwd`/DGE/$sampleName'.inton_fix_counts.tsv' SUMMARY=`pwd`/Reports/$sampleName'.inton_fix.count_summary.txt' NUM_CORE_\
+$dropseq_dir/DigitalExpression I=$sampleName'.aligned_both.gene.bam' O=`pwd`/DGE/$sampleName'.intron_fix_counts.tsv' SUMMARY=`pwd`/Reports/$sampleName'.inton_fix.count_summary.txt' NUM_CORE_\
 BARCODES=$cells EDIT_DISTANCE=1
 
 
