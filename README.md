@@ -1,6 +1,11 @@
 SC RNA-seq analysis piepline
 ============================================================
 Time-stamp: "2017-11-02 14:14:48"
+# Install 
+
+``` shell
+export PATH="$PATH:$PWD/Drop-seq_tools-1.12/"
+```
 
 # Overall steps
 
