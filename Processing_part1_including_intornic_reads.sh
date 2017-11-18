@@ -97,8 +97,7 @@ UN=false |\
 $dropseq_dir/TagReadWithGeneExon I=/dev/stdin O=$sampleName'.aligned.gene.bam' ANNOTATIONS_FILE=$ref_dir/$refGTF TAG=GE
 
 ## take the unmapped reads and map them to gene                                                                                                                                                                                                 
-java -Xmx4g -jar $picard_dir/picard.jar FastqToSam F1=$sampleName'.Unmapped.out.mate1' O=$sample_name'.unmapped.sam' SAMPLE_NAME=$sample_name
-$star_dir/STAR --runThreadN 16 --genomeDir $ref_dir --readFilesIn `pwd`/$sampleName'.Unmapped.out.mate1' --outFileNamePrefix $sampleName'.map2' --outSAMunmapped Within                      \
+$star_dir/STAR --runThreadN 16 --genomeDir $ref_dir --readFilesIn `pwd`/$sampleName'.Unmapped.out.mate1' --outFileNamePrefix $sampleName'.map2.' --outSAMunmapped Within                      \
 java -Xmx4g -jar $picard_dir/picard.jar SortSam I=$sampleName'.map2.Aligned.out.sam' O=/dev/stdout SO=queryname TMP_DIR=/mnt/thumper/home/amraman/Tmp |\
 java -Xmx4g -jar $picard_dir/picard.jar MergeBamAlignment REFERENCE_SEQUENCE=$ref_dir/$refFasta UNMAPPED_BAM=$sampleName'.unaligned.tagged.bam' ALIGNED_BAM=/dev/stdin O=/dev/stdout PAIRED_R\
 UN=false |\
