@@ -17,6 +17,23 @@ process_umi<-function(file,name){
   GenePlot(tissue, "nUMI", "nGene")
   return (tissue)}
 
+##get metrics (median umi, # of genes, # of umi/gene for all cells) and save histogam plots of these distributions
+metrics<-function(tissue,name){
+  print (median(tissue@meta.data$nGene))
+  print (median(tissue@meta.data$nUMI))
+  print (median(tissue@meta.data$nUMI/tissue@meta.data$nGene))
+  pdf(paste0(name,'nGene'))
+  hist(tissue@meta.data$nGene)
+  dev.off()
+  pdf(paste0(name,'nUMI'))
+  hist(tissue@meta.data$nUMI)
+  dev.off()
+  pdf(paste0(name,'Coverage'))
+  hist(tissue@meta.data$nUMI/tissue@meta.data$nGene)
+  dev.off()
+}
+
+
 ## to generate TSNE Plots (give seurat object, low/high umi estimates for doublet filtering; Density paramter for dbscan clustering)
 process_umi_step2 <- function (tissue, density_param,cutoff){
   val<-cutoff  #find_umi_cutoff based on plot of nUMI vs nGenes
