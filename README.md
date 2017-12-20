@@ -56,7 +56,13 @@ For each cluster a table with a list of signficantly up or downregulated marker 
    2. raw unnormalized heatmap
    3. A csv table showing the order of genes in the normalized and unnormalized heatmap 
 
-
+### Create a Violinplot displaying raw UMI distribution of marker genes  (python script)
+* **Input**: 
+   1. A matrix rows(marker genes), columns(cells)  filled with raw UMI counts
+   2. A matrix rows(cells) and one column with the cluster identity 
+*  **outputs**:
+   1. Violinplots of raw UMI distribution for 8 marker genes
+   You can change the subplot in the python script to accomodate more or less markers genes.  plt.subplot(241) means create a 2x4 grid,  and place this subplot in the 1st position of that grid
 
 
 
