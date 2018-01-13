@@ -42,7 +42,7 @@ process_umi_step2 <- function (tissue, density_param,cutoff){
   tissue <- RunPCA(tissue,do.print = FALSE, pc.genes = tissue@var.genes)
   tissue=ProjectPCA(tissue,do.print=FALSE)
   tissue <- RunTSNE(tissue, dims.use = 1:11, do.fast = T)
-  tissue=FindClusters(tissue,k.param=density_param, dims.use = 1:13)
+  tissue=FindClusters(tissue,k.param=density_param, dims.use = 1:11)
   TSNEPlot(tissue,do.label = TRUE)
   return (tissue)}
 
@@ -90,6 +90,7 @@ optimize_k <-function(tissue){
     partitions<-as.integer(tissue@meta.data[rownames(tissue@dr$tsne@cell.embeddings),'res.0.8'])
     index_new<-intCriteria(data,partitions,c("dav","Dunn","Silhouette"))
     indicies<-rbind(data.frame(index_new), data.frame(indicies))}
+  write.csv(indicies, paste0(args[1],"koptimal.csv"))
   return(indicies)
   }
 
