@@ -94,7 +94,22 @@ optimize_k <-function(tissue){
   return(indicies)
   }
 
-
+### Combine data sets
+combine_data_sets<-function(rep1,rep2,protocol1,protocol2){
+  rep1 <- FindVariableGenes(rep1 ,do.plot = FALSE)
+  rep2 <- FindVariableGenes(rep2 ,do.plot = FALSE)
+  hvg.rep1 <- rownames(head(rep1@hvg.info, 1000))
+  hvg.rep2 <- rownames(head(rep2@hvg.info, 1000))
+  hvg.union <- union(hvg.rep1, hvg.rep2)
+  rep1@meta.data[, "protocol"] <- protocol1
+  rep2@meta.data[, "protocol"] <- protocol2
+  reps <- RunCCA(rep1, rep2, genes.use = hvg.union,add.cell.id1=protocol1 ,group.by = 'protocol',num.cc = 10,scale.data = TRUE)
+  reps <- CalcVarExpRatio(reps, reduction.type = "pca", grouping.var = "protocol")
+  reps <- SubsetData(reps, subset.name = "var.ratio.pca", accept.low = 0.5)
+  reps <- AlignSubspace(reps, reduction.type = "cca", grouping.var = "protocol", dims.align = 1:10)
+  reps <- RunTSNE(reps, reduction.use = "cca.aligned", dims.use = 1:10, do.fast = T)
+  reps <- FindClusters(reps, reduction.type = "cca.aligned", dims.use = 1:10, save.SNN = T)
+  return (reps)}
 
 ###example usage###########
 ## LI <-process_umi('~/Documents/Ren_lab/sc/LI.counts.tsv','LI') # name of file, what I want to call the seurat object
