@@ -41,6 +41,9 @@ All functions can be found in `post_processing.R`. Require:
 
 * To estimate k we can run `optimize_k(seurat_object)`  to get out a table.  Ideal cluster choice maximizes Dunn & Shilouette Indicies and minimizes the Davies Bouldin index.  
 
+* If you would like to perform dimensionality reduction using SVD instead of PCA, you can use the function in dimensionality_reduction.R to output a matrix
+
+* Usage: `seurat_object<- svd(seurat_object)
 ### Identify cell type specific marker genes 
 
 * Usage: `identify_clusters(seurat_object, # of clusters, 'name_of_sample')`
