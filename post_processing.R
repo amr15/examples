@@ -37,7 +37,9 @@ metrics<-function(tissue,name){
 ## to generate TSNE Plots (give seurat object, low/high umi estimates for doublet filtering; Density paramter for dbscan clustering)
 process_umi_step2 <- function (tissue, density_param,cutoff){
   val<-cutoff  #find_umi_cutoff based on plot of nUMI vs nGenes
-  tissue <- SubsetData(tissue, subset.name = "nUMI", accept.high = val)
+  tissue <- SubsetData(tissue, subset.name = "percent.mito", accept.high = 0.05)
+  tissue <- SubsetData(tissue, subset.name = "nUMI", accept.high = val) 
+  tissue <- SubsetData(tissue, subset.name = "nUMI", accept.low = 200)
   tissue <- FindVariableGenes(tissue ,do.plot = FALSE)
   tissue <- RunPCA(tissue,do.print = FALSE, pc.genes = tissue@var.genes)
   tissue=ProjectPCA(tissue,do.print=FALSE)
