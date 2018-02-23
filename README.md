@@ -43,10 +43,11 @@ All functions can be found in `post_processing.R`. Require:
 
 * If you would like to perform dimensionality reduction using SVD instead of PCA, you can use the function in dimensionality_reduction.R to output a matrix
 
-* Usage: `seurat_object<- svd(seurat_object)
+* Usage: `svd(seurat_object)`
+
 ### Identify cell type specific marker genes 
 
-* Usage: `identify_clusters(seurat_object, # of clusters, 'name_of_sample')`
+* Usage: `identify_clusters(seurat_object, # of clusters, 'name_of_sample')
 
 The name of sample will be used to name the output files, and the number of cells in each cluster will be outputted to the screen.
 For each cluster a table with a list of signficantly up or downregulated marker genes as well as a table with the average UMI for each gene will be outputted. 
