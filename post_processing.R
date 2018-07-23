@@ -64,7 +64,7 @@ identify_clusters <-function(tissue,ncluster,type) {
   for (i in (0:ncluster)){
     marker=FindMarkers(tissue,i)
     if (length(colnames(tissue@raw.data[,rownames(subset(tissue@meta.data, tissue@meta.data$res.0.8==i))]))>100){
-      marker<-marker[rownames(as.matrix(rowSums(tissue@raw.data[rownames(marker),])) > .05*length(rownames(marker))),]
+      marker<-marker[rownames(as.matrix(rowSums(tissue@raw.data[rownames(marker),])) > .05*length(rownames(tissue@meta.data))),]
     }
     else{
       marker<-marker[rownames(as.matrix(rowSums(tissue@raw.data[rownames(marker),])) > 5),]
