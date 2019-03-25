@@ -5,7 +5,7 @@ install.packages('ade4')
 library('ade4')
 
 #' Turns RNA-seq datda into a binary matrix of 1(expressed) 0 (not expressed) 
-#'
+#' Input is a seurat object and output is a seurat object with expression values that have been binarized 
 #' Retains genes expressed in at least 10 cells and cells that express at least 200 genes 
 
 binarize_matrix <-function(tissue) {
@@ -16,10 +16,8 @@ binarize_matrix <-function(tissue) {
   return(tissue) 
   }
 
-#' Performs TSNE on a scaled distance matrix created from UMI data
-#' 
-#' Takes in a seurat object (tissue) and returns the suerat object
-#'
+#' Performs TSNE on a scaled distance matrix created from UMI data; goal is to test different distance metrics for visualization
+#' Input in a seurat object (tissue) and output is a suerat object with new TSNE coordinates (based on distance metric of choice)
 #' n can range from 1 to 10, and corresponds to distance metrics here: https://www.rdocumentation.org/packages/ade4/versions/1.7-6/topics/dist.binary
 
 test_metrics<- function(tissue,n){
