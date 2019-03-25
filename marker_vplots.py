@@ -9,6 +9,10 @@ from matplotlib import pyplot
 sns.set_style('white')
 sns.set_context('poster')
 
+#' merged_data takes in a data frame with rows of genes of your choice (marker genes), columns of cells, and values umi; 
+#' another data frame of 'meta data' has rows of cells, and one column of cluster ids 
+#' It transposes the expression data frame to (cells x genes), and adds 'cluster id' as an additional column
+
 def merged_data(expression, metadata):
     umi = pd.read_csv(expression, sep = '\t', header=0)
     meta = pd.read_csv(metadata, sep = '\t', header=0)
@@ -19,6 +23,7 @@ def merged_data(expression, metadata):
 
 merged= merged_data(argv[1], argv[2])
 
+#' This plots the distribution of each marker gene as a violinplot in a subplot of the main figure  
 fig = plt.figure()
 ax1 = plt.subplot(241)
 ax2 = plt.subplot(242)
@@ -43,6 +48,7 @@ for i in range(len(merged.columns)-1):
     for i in [1,2,3,5,6,7]:
         plt.setp(ax[i].get_yticklabels(), visible=False)
 
-fig.savefig(argv[3]+'.pdf')
-
 sns.despine()
+
+# This saves the figure as a pdf file 
+fig.savefig(argv[3]+'.pdf')
