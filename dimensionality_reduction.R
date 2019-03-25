@@ -7,7 +7,7 @@ library(Rtsne)
 #' Default rank of matrix is set to 20 
 #' Coordinates from running TSNE on the 'v' matrix are saved back into the original Seurat object
 #' Right singular vectors saved as new "PCs"  
-#' Returns original seruat object with modified TNSE coordinates and "PCs" 
+#' Input is a seurat object; Output is original seruat object with modified TNSE coordinates and "PCs" 
 
 svd<-function(tissue){
   decomp <-sparsesvd(as(tissue@scale.data,'sparseMatrix'), rank=20L)
